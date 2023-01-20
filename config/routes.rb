@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "about", to: "about#index" 
 
+  get "typing_test", to: "typing_tests#index"
+
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"
 
