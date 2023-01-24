@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_15_134224) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_24_114407) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "extracts", force: :cascade do |t|
+    t.text "extract_text"
+    t.string "extract_title"
+    t.integer "extract_length"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

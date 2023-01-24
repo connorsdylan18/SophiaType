@@ -6,6 +6,8 @@ mistakeTag = document.querySelector(".mistake span"),
 wpmTag = document.querySelector(".wpm span"),
 cpmTag = document.querySelector(".cpm span");
 
+window.alert("hello typing test")
+
 let timer,
 maxTime = 60,
 timeLeft = maxTime,
