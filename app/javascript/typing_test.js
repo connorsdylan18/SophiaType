@@ -1,3 +1,5 @@
+window.alert("Hello typing test!")
+
 // Reference the input field and the text that is being tested
 const input = document.getElementById("typing-test-input");
 const words = document.getElementById("typing-test-text");

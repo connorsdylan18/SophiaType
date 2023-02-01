@@ -1,0 +1,12 @@
+<h1>Submit a new extract:</h1>
+
+<%= form_with model: @extract, local: true do |form| %>
+  <div class="field">
+    <%= form.label :extract_title %><br>
+    <%= form.text_area :extract_title %><br>
+    <%= form.label :extract_text %><br>
+    <%= form.text_area :extract_text %><br>
+  </div>
+
+  <%= form.submit "Create Extract" %>
+<% end %>

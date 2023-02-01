@@ -1,5 +1,3 @@
-<%= javascript_include_tag "typing_test_script" %>
-
 <%= form_tag "/typing_test", method: :post, id: "typing-test-form" do %>
   <div id="typing-test-text">
     <%= @text %>
@@ -9,3 +7,5 @@
   </div>
   <%= submit_tag "Submit" %>
 <% end %>
+
+<%= javascript_include_tag "typing_test" %>
