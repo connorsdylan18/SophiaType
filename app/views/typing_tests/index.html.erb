@@ -1,37 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <%= stylesheet_link_tag "typing_test_style" %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thelêtos</title>
-</head>
-<body>
-  <div class="wrapper">
-    <input type="text" class="input-field">
-    <div class="content-box">
-      <div class="typing-text">
-        <p> Text goes here </p>
-      </div>
-      <div class="content">
-        <ul class="result-details">
-          <li class="time">
-            <p>Time left:</p>
-            <span><b>60</b>s</span>
-          </li>
-          <li class="mistake">
-            <p>WPM:</p>
-            <span>0</span>
-          </li>
-          <li class="cpm">
-            <p>CPM:</p>
-            <span>0</span>
-          </li>
-        </ul>
-        <button>Try Again</button>
-      </div>
-    </div>
+<%= javascript_include_tag "typing_test_script" %>
+
+<%= form_tag "/typing_test", method: :post, id: "typing-test-form" do %>
+  <div id="typing-test-text">
+    <%= @text %>
   </div>
-  <%= javascript_include_tag "typing_test_script" %>
-</body>
-</html>
+  <div id="typing-test-input">
+    <%= text_field_tag :typed_text, id: "typed-text" %>
+  </div>
+  <%= submit_tag "Submit" %>
+<% end %>
