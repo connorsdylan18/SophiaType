@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :extracts 
 
   get "typing_test", to: "typing_tests#index"
+  get "typing_test/complete", to: "typing_tests#complete"
 
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"

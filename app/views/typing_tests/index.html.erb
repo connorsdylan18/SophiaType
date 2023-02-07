@@ -1,11 +1,28 @@
-<%= form_tag "/typing_test", method: :post, id: "typing-test-form" do %>
-  <div id="typing-test-text">
-    <%= @text %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <%= stylesheet_link_tag "typing_test_style"%>
+  <title>Bythos</title>
+</head>
+<body>
+  <div id="typing-test">
+    <p id="text"><%= @text %></p>
+    <input type="text" id="input">
   </div>
-  <div id="typing-test-input">
-    <%= text_field_tag :typed_text, id: "typed-text" %>
-  </div>
-  <%= submit_tag "Submit" %>
-<% end %>
 
-<%= javascript_include_tag "typing_test" %>
+  <div id="results">
+    <ul>
+      <li>WPM: <span id="wpm"></span> </li>
+      <li>Accuracy: <span id="accuracy"></span> </li>
+      <li>Gross: <span id="gross"></span> </li>
+      <li>Time: <span id="time"></span> </li>
+    </ul>
+  </div>
+
+  <%= javascript_include_tag "typing_test" %>
+</body>
+</html>
