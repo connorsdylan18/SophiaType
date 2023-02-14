@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "typing_test", to: "typing_tests#index"
   get "typing_test/complete", to: "typing_tests#complete"
 
+  post "/results", to: "results#create"
+  get "/user_results/:id", to: "results#user_results", as: "user_results"
+
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"
 

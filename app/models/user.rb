@@ -1,5 +1,7 @@
 class User < ApplicationRecord
+  has_many :results
   has_secure_password
+  validates :name, presence: true 
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "must be a valid email adress"}
   validates :password, presence: true
   validates :password, format: { with: /[A-Z]/, message: "must include one uppercase letter"}

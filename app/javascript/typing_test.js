@@ -41,7 +41,6 @@ function startTypingTest() {
             }
           }
 
-          console.log(time, uErrors, errors, entries)
           resolve({ time, uErrors, errors, entries });
         
         }
@@ -52,8 +51,7 @@ function startTypingTest() {
 
 
 function calculateResults(time, uErrors, errors, entries) {
-  console.log(time)
-  let accuracy
+  let accuracy = 0
   let gWPM = (entries/5)/time;
   let nWPM = gWPM - (uErrors/time);
   if (errors === 0) {
@@ -61,26 +59,58 @@ function calculateResults(time, uErrors, errors, entries) {
   } else {
     accuracy = 100 - (errors/entries * 100);
   }
-  return {grossWPM: gWPM, netWPM: nWPM, totalAccuracy: accuracy, time: time};
+  return {grossWPM: Math.round(gWPM), netWPM: Math.round(nWPM), totalAccuracy: Math.round(accuracy), time: parseFloat(time.toFixed(2))};
 }
 
 
 function displayResults(results) {
-  console.log(results.time)
   const resultsArray = [ {id: "wpm", value: results.netWPM}, {id: "accuracy", value: results.totalAccuracy}, {id: "gross", value: results.grossWPM}, {id: "time", value: results.time} ];
   resultsArray.forEach(item => { 
-    document.getElementById(item.id).textContent = item.value.toFixed(2);
+    document.getElementById(item.id).textContent = item.value;
   });
+}
+
+
+function createResult(results) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.open('POST', '/results');
+
+  var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onload = function() {
+    if (xhr.status === 201) {
+      var result = JSON.parse(xhr.responseText);
+      console.log(result);
+    } else {
+      console.log('Error creating result: ' + xhr.statusText);
+    }
+  };
+
+  console.log(results.accuracy)
+  var data = JSON.stringify({
+    result: {
+      user_id: parseInt(document.getElementById('user-id').getAttribute('data-user-id')),
+      netWPM: results.netWPM,
+      grossWPM: results.grossWPM,
+      accuracy: results.totalAccuracy,
+      time: results.time
+    }
+  });
+  console.log(data)
+  xhr.send(data);
 }
 
 
 startTypingTest()
   .then(({ time, uErrors, errors, entries }) => {
-    console.log(time)
     return calculateResults(time, uErrors, errors, entries);
   })
   .then((results) => {
     displayResults(results);
+    createResult(results);
   })
   .catch((error) => {
     console.error(error);

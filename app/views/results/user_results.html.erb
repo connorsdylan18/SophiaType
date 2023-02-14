@@ -1,0 +1,22 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    Results for <% if @user.name.present? %>
+      <%= @user.name %>
+    <% else %>
+      <%= @user.email %>
+    <% end %>
+  </h1>
+
+  <% @results.each do |result| %>
+    <div style="display: flex; flex-direction: row; width: 80%; justify-content: space-between; padding: 1em;">
+      <div style="flex: 1; padding-right: 1em;">
+        <h3><%= result.created_at.strftime("%m/%d/%Y") %></h3>
+        <p><strong>Net WPM:</strong> <%= result.netWPM %></p>
+        <p><strong>Gross WPM:</strong> <%= result.grossWPM %></p>
+        <p><strong>Accuracy:</strong> <%= result.accuracy %></p>
+        <p><strong>Time:</strong> <%= result.time %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
