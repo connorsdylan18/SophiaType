@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :results
+  has_one_attached :picture 
   has_secure_password
   validates :name, presence: true 
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "must be a valid email adress"}

@@ -1,9 +1,4 @@
 class ResultsController < ApplicationController
-  def user_results
-    @user = User.find(params[:id])
-    @results = @user.results 
-  end
-
   def create
     puts "User ID:", params[:user_id] # Debugging line
     result = Result.new(result_params)

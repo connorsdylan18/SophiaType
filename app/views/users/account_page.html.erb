@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    Hello, <% if @user.name.present? %>
+      <%= @user.name %>
+    <% else %>
+      <%= @user.email %>
+    <% end %>
+  </h1>
+
+  <p>The seed of eden has begun to <strong>rot</strong></p>
+</div>
