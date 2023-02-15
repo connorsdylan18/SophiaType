@@ -1,16 +1,19 @@
 <div style="display: flex; flex-direction: column; align-items: center;">
-  <h1>
-    Hello, <% if @user.name.present? %>
-      <%= @user.name %>
-    <% else %>
-      <%= @user.email %>
+  <div class="d-flex align-items-center">
+    <% if @user.picture.attached? %>
+      <%= image_tag url_for(@user.picture), class: "img-thumbnail" %>
     <% end %>
-  </h1>
 
-  <% if @user.picture.attached? %>
-    <%= image_tag @user.picture.variant(resize: "100x100").processed.url %>
-  <% end %>
+    <h1>
+      Hello, <% if @user.name.present? %>
+        <%= @user.name %>
+      <% else %>
+        <%= @user.email %>
+      <% end %>
+    </h1>
+  </div>
 
+  
   <p>The seed of eden has begun to <strong>rot</strong></p>
 
   <%= link_to "Results", user_results_path(user_id: @user.id) %>
