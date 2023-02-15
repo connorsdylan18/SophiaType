@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   post "/results", to: "results#create"
 
   get "/users/:user_id", to: "users#account_page", as: "user_account"
+  get "/user_results/:user_id", to: "users#results", as: "user_results"
+  get '/users/:user_id/edit', to: 'users#edit', as: 'edit_user'
+  patch "/users/:user_id", to: "users#update", as: "user_update"
 
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"

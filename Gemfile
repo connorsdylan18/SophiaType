@@ -46,6 +46,10 @@ gem "bootsnap", require: false
 
 gem "webpacker", github: "rails/webpacker"
 
+gem "mini_magick"
+
+gem "image_processing", "~> 1.2"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -7,5 +7,12 @@
     <% end %>
   </h1>
 
+  <% if @user.picture.attached? %>
+    <%= image_tag @user.picture.variant(resize: "100x100").processed.url %>
+  <% end %>
+
   <p>The seed of eden has begun to <strong>rot</strong></p>
+
+  <%= link_to "Results", user_results_path(user_id: @user.id) %>
+  <%= link_to "Settings", edit_user_path(user_id: @user.id) %>
 </div>
