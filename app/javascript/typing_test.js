@@ -24,7 +24,6 @@ function startTypingTest() {
         } 
 
         if (inputValue[inputValue.length -1] !== characters[inputValue.length - 1]) {
-          console.log(inputValue[inputValue.length -1], characters[inputValue.length - 1])
           errors += 1;
         }
 
@@ -53,7 +52,7 @@ function startTypingTest() {
 function calculateResults(time, uErrors, errors, entries) {
   let accuracy = 0
   let gWPM = (entries/5)/time;
-  let nWPM = gWPM - (uErrors/time);
+  let nWPM = Math.abs(gWPM - (uErrors/time));
   if (errors === 0) {
     accuracy = 100;
   } else {
@@ -83,7 +82,6 @@ function createResult(results) {
   xhr.onload = function() {
     if (xhr.status === 201) {
       var result = JSON.parse(xhr.responseText);
-      console.log(result);
     } else {
       console.log('Error creating result: ' + xhr.statusText);
     }
