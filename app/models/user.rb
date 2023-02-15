@@ -7,4 +7,10 @@ class User < ApplicationRecord
   validates :password, format: { with: /[A-Z]/, message: "must include one uppercase letter"}
   validates :password, format: { with: /\d/, message: "must include one number"}
   validates :password, length: { minimum: 8, message: "must be at least 8 characters long"}
+
+  def resized_picture 
+    if picture.attached?
+      picture.variant(resize: "100x100")
+    end
+  end
 end

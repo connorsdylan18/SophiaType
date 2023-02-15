@@ -1,7 +1,11 @@
+<head>
+  <title>Account</title>
+  <%= stylesheet_link_tag "account_page_style" %>
+
 <div style="display: flex; flex-direction: column; align-items: center;">
   <div class="d-flex align-items-center">
     <% if @user.picture.attached? %>
-      <%= image_tag url_for(@user.picture), class: "img-thumbnail" %>
+      <%= image_tag url_for(@user.picture), class: "img-thumbnail profile-image" %>
     <% end %>
 
     <h1>
