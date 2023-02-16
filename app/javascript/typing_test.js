@@ -1,11 +1,16 @@
 function startTypingTest() {
   return new Promise((resolve, reject) => {
     let inputField = document.getElementById("input");
-    let textElement = document.getElementById("text")
-    let wordsValue = textElement.textContent;
+    let textElement = document.getElementById("text");
+    let wordsValue = textElement.textContent.trim().replace(/<[^>]+>/g, "");
     let characters = wordsValue.split("");
-    let charElements = wordsValue.querySelectorAll("span");
+    let spannedText = "";
+    characters.forEach((char) => {
+      spannedText += `<span class="neutral">${char}</span>`;
+    });
+    textElement.innerHTML = spannedText;
     let inputValue;
+    let charElements;
     let startFlag = false;
     let start;
     let errors = 0;
@@ -13,11 +18,11 @@ function startTypingTest() {
     let entries = 0;
 
     inputField.addEventListener("input", function() {
+      charElements = textElement.querySelectorAll("span") 
       inputValue = inputField.value;
       let prevLength = inputValue.length - 1;
-      
-      if (inputValue.length === prevLength + 1) {
 
+      if (inputValue.length === prevLength + 1) {
         entries += 1;
 
         if (!startFlag) {
@@ -25,8 +30,14 @@ function startTypingTest() {
           startFlag = true;
         } 
 
-        if (inputValue[inputValue.length -1] !== characters[inputValue.length - 1]) {
+        let currentChar = charElements[inputValue.length - 1];
+        if (inputValue[inputValue.length - 1] !== currentChar.innerText) {
           errors += 1;
+          currentChar.classList.remove("neutral", "correct")
+          currentChar.classList.add("error");
+        } else {
+          currentChar.classList.remove("neutral", "error")
+          currentChar.classList.add("correct");
         }
 
         if (inputValue.length === wordsValue.length) {
@@ -37,7 +48,7 @@ function startTypingTest() {
           document.getElementById("results").classList.remove("hide");
 
           for (let i = 0; i < wordsValue.length; i++) {
-            if (inputValue[i] !== wordsValue[i]) {
+            if (inputValue[i] !== characters[i]) {
               uErrors += 1;
             }
           }
@@ -45,7 +56,25 @@ function startTypingTest() {
           resolve({ time, uErrors, errors, entries });
         
         }
-      } 
+      } else if (inputValue.length < prevLength) {
+        charElements[inputValue.length].classList.remove("correct", "error");
+        textElement.textContent = spannedText;
+        charElements = textElement.querySelectorAll("span");
+      }
+    });
+
+    inputField.addEventListener("keydown", function(event) {
+      if (event.key === "Backspace") {
+        charElements = textElement.querySelectorAll("span"); 
+        let prevLength = inputField.value.length + 1;
+        if (charElements[inputField.value.length] && inputField.value.length < prevLength) {
+          console.log("B-b-b-backspace")
+          setTimeout(() => {
+            charElements[inputField.value.length].classList.remove("correct", "error")
+            charElements[inputField.value.length].classList.add("neutral")
+          }, 0);
+        }
+      }
     });
 
   });

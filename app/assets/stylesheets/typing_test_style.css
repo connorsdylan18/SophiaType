@@ -2,6 +2,19 @@
   background-color: transparent;
 }
 
+.neutral {
+  color: grey;
+}
+
+.error {
+  color: red;
+}
+
+.correct {
+  color: black;
+}
+
+
 .hide {
   display: none;
 }
