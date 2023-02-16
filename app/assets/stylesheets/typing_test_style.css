@@ -2,14 +2,6 @@
   background-color: transparent;
 }
 
-#text {
-  color: gray;
-}
-
-.incorrect {
-  color: red;
-}
-
 .hide {
   display: none;
 }

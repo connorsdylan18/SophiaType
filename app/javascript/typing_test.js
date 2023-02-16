@@ -1,8 +1,10 @@
 function startTypingTest() {
   return new Promise((resolve, reject) => {
     let inputField = document.getElementById("input");
-    let wordsValue = document.getElementById("text").textContent;
+    let textElement = document.getElementById("text")
+    let wordsValue = textElement.textContent;
     let characters = wordsValue.split("");
+    let charElements = wordsValue.querySelectorAll("span");
     let inputValue;
     let startFlag = false;
     let start;
@@ -45,6 +47,7 @@ function startTypingTest() {
         }
       } 
     });
+
   });
 }
 
