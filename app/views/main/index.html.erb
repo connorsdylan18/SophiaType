@@ -4,23 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag "main_style" %>
   <title>SophiaType</title>
 </head>
 <body>
   <div class="d-flex align-items-center justify-content-center">
     <h1>do you feel the weight of your sins?</h1><br>
-  </div>
+  </div><br>
 
-  <div class="row justify-content-center">
-  <div class="col-md-6">
+  <h2>Game options:</h2>
+  <div class="container">
     <%= form_with url: typing_test_path, method: :get do |form| %>
-      <div class="input-group mb-3">
-        <%= form.select :size, options_for_select([["Small", "Small"], ["Medium", "Medium"], ["Large", "Large"]]), {}, {class: "form-select", "aria-label": "Select Text Size"} %>
-        <button class="btn btn-primary" type="submit">Go</button>
+      <div class="row justify-content-center">
+        <div class="col-sm-6">
+          <div id="mode-select" class="btn-group" role="group" data-toggle="buttons" aria-label="Options">
+            <%= form.radio_button :mode, "quote", data: { value: "quote" }, autocomplete: "off" %>
+            quote
+            <%= form.radio_button :mode, "words", data: { value: "words" }, autocomplete: "off" %>
+            words
+            <%= form.radio_button :mode, "timed", data: { value: "timed" }, autocomplete: "off" %>
+            timed 
+          </div><br>
+        </div>
+        <div class="col-sm-3">
+          <div id="size-select" class="btn-group hide size" role="group" data-toggle="buttons" aria-label="Options">
+            <%= form.radio_button :size, "small", autocomplete: "off" %>
+            small
+            <%= form.radio_button :size, "medium", autocomplete: "off" %>
+            medium
+            <%= form.radio_button :size, "large", autocomplete: "off" %>
+            large 
+          </div><br>
+        </div>
+        <div class="col-sm-3 d-flex align-items-center justify-content-end">
+          <button type="submit" class="btn btn-primary">Go</button>
+        </div>
       </div>
     <% end %>
   </div>
-</div>
 
   <%= javascript_include_tag "main_index_script.js" %>
 </body>

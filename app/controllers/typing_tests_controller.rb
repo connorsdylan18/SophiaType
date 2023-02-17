@@ -1,7 +1,11 @@
 class TypingTestsController < ApplicationController
   def index 
+    @mode = params[:mode]
     @size = params[:size]
-    @extract = Extract.where(extract_length: @size).order("RANDOM()").first
-    @text = @extract.extract_text.strip 
+    if @mode == "quote"
+      @extract = Extract.where(extract_length: @size).order("RANDOM()").first
+      @text = @extract.extract_text.strip 
+    end
+    
   end
 end
