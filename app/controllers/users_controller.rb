@@ -22,12 +22,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     
     if @user.update(user_params)
-      puts "********* #{params[:user][:picture]} ***********"
       @user.picture.attach(params[:user][:picture])
       flash[:success] = "Account settings updated successfully!"
       redirect_to user_account_path
     else
-      flash[:alert] = "Failed to update account settings!"
+      flash.now[:alert] = "Failed to update account settings!"
       render :edit
     end
   end  

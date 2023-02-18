@@ -27,10 +27,10 @@ Rails.application.routes.draw do
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 
-  get "sign_in", to: "sessions#new"
-  post "sign_in", to: "sessions#create"
+  get "sign_in", to: "sessions#new", as: :new_session 
+  post "sign_in", to: "sessions#create", as: :sign_in 
 
-  delete "logout", to: "sessions#destroy"
+  delete "logout", to: "sessions#destroy", as: :logout
 
   root "main#index" 
 end

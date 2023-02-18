@@ -48,6 +48,8 @@ gem "webpacker", github: "rails/webpacker"
 
 gem "mini_magick"
 
+gem "rails-controller-testing"
+
 gem "image_processing", "~> 1.2"
 
 # Use Sass to process CSS

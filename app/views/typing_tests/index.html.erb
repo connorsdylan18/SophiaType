@@ -9,9 +9,10 @@
   <title>Bythos</title>
 </head>
 <body>
-  <div id="typing-test">
+  <div id="typing-test" class="">
     <p id="text" class="neutral"><%= @text %></p>
     <input type="text" id="input">
+    <p class="hide">Time left: <span id="timer"></span><p>
   </div>
 
   <div id="results" class="hide">
@@ -24,6 +25,7 @@
     </ul>
   </div>
 
+  <%= hidden_field_tag "mode", @mode %>
   <div id="user-id" data-user-id="<%= session[:user_id] %>"></div>
   <%= javascript_include_tag "typing_test" %>
 </body>

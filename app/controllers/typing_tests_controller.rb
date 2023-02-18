@@ -3,7 +3,7 @@ class TypingTestsController < ApplicationController
     @mode = params[:mode]
     @size = params[:size]
     if @mode == "quote"
-      @extract = Extract.where(extract_length: @size).order("RANDOM()").first
+      @extract = Extract.where(extract_length: @size).where.not(extract_title: "WORDS").order("RANDOM()").first
       @text = @extract.extract_text.strip 
     elsif @mode == "words" || @mode == "timed"
       @extract = Extract.find_by(extract_title: "WORDS")
@@ -17,7 +17,7 @@ class TypingTestsController < ApplicationController
           @text = @extract.extract_text.split.sample(75).join(" ")
         end
       else  
-        @text = @extract.extract_text.split.sample(25).join(" ")
+        @text = @extract.extract_text.split.sample(200).join(" ")
       end
     end
   end
