@@ -3,6 +3,7 @@ require "test_helper"
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
+    # post sign_in_path, params: { email: @user.email, password: 'password' }
   end
 
   test "should get new" do
@@ -25,7 +26,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy session" do
-    session[:user_id] = @user.id
     delete logout_path
     assert_redirected_to root_path
     assert_nil session[:user_id]

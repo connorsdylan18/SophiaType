@@ -2,32 +2,27 @@ class UsersController < ApplicationController
   before_action :set_current_user
 
   def account_page
-    @user = @current_user
   end
 
   def results
-    @user = User.find(params[:user_id])
-    @results = @user.results 
+    @results = @current_user.results 
   end
 
-  def settings
-    @user = User.find(params[:user_id])
-  end
+  # def settings
+  #   @user = User.find(params[:user_id])
+  # end
 
   def edit
-    @user = User.find(params[:user_id])
   end
 
   def update
-    @user = User.find(params[:user_id])
-    
-    if @user.update(user_params)
-      @user.picture.attach(params[:user][:picture])
+    if @current_user.update(user_params)
+      @current_user.picture.attach(params[:user][:picture])
       flash[:success] = "Account settings updated successfully!"
       redirect_to user_account_path
     else
-      flash.now[:alert] = "Failed to update account settings!"
-      render :edit
+      flash[:alert] = "Failed to update account settings!"
+      redirect_to user_account_path 
     end
   end  
 

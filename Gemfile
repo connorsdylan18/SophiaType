@@ -46,7 +46,7 @@ gem "bootsnap", require: false
 
 gem "webpacker", github: "rails/webpacker"
 
-gem "mini_magick"
+gem "mini_magick" 
 
 gem "rails-controller-testing"
 

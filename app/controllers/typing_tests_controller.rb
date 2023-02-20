@@ -6,18 +6,18 @@ class TypingTestsController < ApplicationController
       @extract = Extract.where(extract_length: @size).where.not(extract_title: "WORDS").order("RANDOM()").first
       @text = @extract.extract_text.strip 
     elsif @mode == "words" || @mode == "timed"
-      @extract = Extract.find_by(extract_title: "WORDS")
+      @extract = Extract.find_by(extract_title: "WORDS", extract_length: "Large")
       if @mode == "words"
         case @size 
-        when "small"
+        when "Small"
           @text = @extract.extract_text.split.sample(25).join(" ")
-        when "medium"
+        when "Medium"
           @text = @extract.extract_text.split.sample(50).join(" ")
-        when "large"
+        when "Large"
           @text = @extract.extract_text.split.sample(75).join(" ")
         end
       else  
-        @text = @extract.extract_text.split.sample(200).join(" ")
+        @text = @extract.extract_text.split.shuffle.join(" ")
       end
     end
   end

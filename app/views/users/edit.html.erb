@@ -1,7 +1,7 @@
-<% if @user.errors.any? %>
+<% if @current_user.errors.any? %>
   <div class="alert alert-danger">
     <ul>
-      <% @user.errors.full_messages.each do |msg| %>
+      <% @current_user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
@@ -10,7 +10,7 @@
 
 <h1>Edit Account Information</h1>
 
-<%= form_with model: @user, url: user_update_path(@user), method: :patch, multipart: true do |f| %>
+<%= form_with model: @current_user, url: user_update_path(@current_user), method: :patch, multipart: true do |f| %>
 
   <div class="form-group">
     <%= f.label :name, class: "form-label" %>

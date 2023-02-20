@@ -1,0 +1,14 @@
+WORDS:
+  extract_title: "WORDS"
+  extract_length: "Large"
+  extract_text: "the be to of and a in that have I it for not on with he as you do at this but his by from they we say her she or an will my one all would there their what so up out if about who get which go me when make can like time no just him know take person into year your good some could them see other than then now look only come its over think also back after use two how our work first well way even new want because any these give day most us"
+
+small_quote:
+  extract_title: "Small quote"
+  extract_length: "Small"
+  extract_text: "This is a small quote"
+
+medium_quote: 
+  extract_title: "Medium quote"
+  extract_length: "Medium"
+  extract_text: "This is a medium quote. Filler filler filler filler filler filler filler filller filler filler filler filler fille filler filler flsff ifldfif ifldfi filler filler filler filler" 
