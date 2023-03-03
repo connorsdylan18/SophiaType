@@ -20,10 +20,10 @@ class ExtractsController < ApplicationController
   end
 
   def determine_length
-    case @extract.extract_text.length
+    case @extract.extract_text.split(" ").length
     when 0..25
       @extract.extract_length = "Small"
-    when 26...100
+    when 26...50
       @extract.extract_length = "Medium"
     else
       @extract.extract_length = "Large"

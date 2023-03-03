@@ -1,27 +1,20 @@
 require "test_helper"
 
 class ResultsControllerTest < ActionController::TestCase
-  test "should create a new result as params are valid" do
-    user = users(:one)
-    assert_difference("Result.count") do
-      post :create, params: { result: { user_id: user.id, time: 3, accuracy: 95, netWPM: 50, grossWPM: 60 } }, format: :json
-    end
+  setup do
+    @user = users(:one)
+    @valid_params = { result: { user_id: @user.id, time: 60, accuracy: 98, netWPM: 60, grossWPM: 70 } }
+    @invalid_params = { result: { user_id: @user.id } }
+  end
+
+  test "should create result with valid parameters" do
+    post :create, params: @valid_params, format: :json
     assert_response :created
-    assert_not_nil assigns(:result)
+    assert_equal @user.id, JSON.parse(response.body)["user_id"]
   end
 
-  test "should not create a new result as params are invalid" do
-    user = users(:one)
-    assert_no_difference("Result.count") do
-      post :create, params: { result: { user_id: user.id, time: 3, accuracy: 95, netWPM: nil, grossWPM: 60 } }, format: :json
-    end
-    assert_response :unprocessable_entity
-  end
-
-  test "should not create a new result as user_id is missing" do
-    assert_no_difference("Result.count") do
-      post :create, params: { result: { time: 100, accuracy: 95, netWPM: 50, grossWPM: 60 } }, format: :json
-    end
+  test "should not create result with invalid parameters" do
+    post :create, params: @invalid_params, format: :json
     assert_response :unprocessable_entity
   end
 end

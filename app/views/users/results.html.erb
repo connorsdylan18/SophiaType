@@ -18,14 +18,16 @@
       <% end %>
       <% average_net_wpm = (net_wpm_sum / @results.length).round %>
       <p><strong>Average Net WPM:</strong> <%= average_net_wpm %></p>
-      <% @results.each do |result| %>
+      <% @results.reverse_each do |result| %>
+        <% minutes = result.time.floor %>
+        <% seconds = ((result.time - minutes) * 60).round %>
         <div style="display: flex; flex-direction: row; width: 80%; justify-content: space-between; padding: 1em;">
           <div style="flex: 1; padding-right: 1em;">
             <h3><%= result.created_at.strftime("%d/%m/%Y") %></h3>
             <p><strong>Net WPM:</strong> <%= result.netWPM %></p>
             <p><strong>Gross WPM:</strong> <%= result.grossWPM %></p>
             <p><strong>Accuracy:</strong> <%= result.accuracy %></p>
-            <p><strong>Time:</strong> <%= result.time %></p>
+            <p><strong>Time:</strong> <%= sprintf("%02d:%02d", minutes, seconds) %></p>
           </div>
         </div>
       <% end %>

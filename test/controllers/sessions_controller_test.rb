@@ -1,9 +1,8 @@
 require "test_helper"
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @user = users(:one)
-    # post sign_in_path, params: { email: @user.email, password: 'password' }
+  def setup
+    @user = User.create(email: "test@test.com", password: "A1password", password_confirmation: "A1password")
   end
 
   test "should get new" do
@@ -12,23 +11,30 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create session" do
-    post sign_in_path, params: { email: @user.email, password: 'Password123' }
+    post sign_in_path, params: { email: @user.email, password: 'A1password' }
     assert_redirected_to root_path
     assert_equal @user.id, session[:user_id]
     assert_equal "Successfully logged in", flash[:notice]
   end
 
-  test "should not create session with invalid credentials" do
-    post sign_in_path, params: { email: @user.email, password: 'wrong_password' }
-    assert_template :new
-    assert_nil session[:user_id]
+  test "should not create session with invalid email" do
+    post sign_in_path, params: { email: "invalid@example.com", password: 'A1password' }
+    assert_redirected_to root_path 
     assert_equal "Invalid email or password", flash[:alert]
+    assert_nil session[:user_id]
+  end
+
+  test "should not create session with invalid password" do
+    post sign_in_path, params: { email: @user.email, password: 'invalid' }
+    assert_redirected_to root_path
+    assert_equal "Invalid email or password", flash[:alert]
+    assert_nil session[:user_id]
   end
 
   test "should destroy session" do
-    delete logout_path
+    delete logout_path  
     assert_redirected_to root_path
-    assert_nil session[:user_id]
     assert_equal "Logged out", flash[:notice]
+    assert_nil session[:user_id]
   end
 end

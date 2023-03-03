@@ -12,3 +12,5 @@ two:
   email: jane.smith@example.com
   password_digest: <%= BCrypt::Password.create('Password456') %>
 
+
+

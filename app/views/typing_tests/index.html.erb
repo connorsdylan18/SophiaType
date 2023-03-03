@@ -11,14 +11,14 @@
 <body>
   <div id="typing-test">
     <p id="text" class="neutral"><%= @text %></p>
-    <input type="text" id="input">
+    <input type="text" id="input" autofocus autocomplete="off">
   </div>
 
   <div id="results" class="hide">
     <ul>
       <li>Title: <span id="title"><%= @extract.extract_title %></span> </li>
       <li>WPM: <span id="wpm"></span> </li>
-      <li>Accuracy: <span id="accuracy"></span> </li>
+      <li>Accuracy: <span id="accuracy"></span>% </li>
       <li>Gross: <span id="gross"></span> </li>
       <li>Time: <span id="time"></span> </li>
     </ul>

@@ -15,15 +15,6 @@ Rails.application.routes.draw do
   get '/users/:user_id/edit', to: 'users#edit', as: 'edit_user'
   patch "/users/:user_id", to: "users#update", as: "user_update"
 
-  get "password", to: "passwords#edit", as: :edit_password
-  patch "password", to: "passwords#update"
-
-  get "password/reset", to: "password_resets#new"
-  post "password/reset", to: "password_resets#create"
-  get "password/reset/edit", to: "password_resets#edit"
-  patch "password/reset/edit", to: "password_resets#update"
-
-
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 

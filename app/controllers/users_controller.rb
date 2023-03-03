@@ -8,14 +8,12 @@ class UsersController < ApplicationController
     @results = @current_user.results 
   end
 
-  # def settings
-  #   @user = User.find(params[:user_id])
-  # end
-
   def edit
+    puts @current_user.inspect 
   end
 
   def update
+    @user = User.find(params[:user_id])
     if @current_user.update(user_params)
       @current_user.picture.attach(params[:user][:picture])
       flash[:success] = "Account settings updated successfully!"
@@ -33,6 +31,6 @@ class UsersController < ApplicationController
   end 
 
   def user_params
-    params.require(:user).permit(:name, :email, :picture, :password, :password_confirmation)
+    params.require(:user).permit(:id, :name, :email, :picture, :password, :password_confirmation)
   end
 end
