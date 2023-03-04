@@ -100,7 +100,10 @@ function calculateResults(time, uErrors, errors, entries) {
 
 
 function displayResults(results) {
-  const resultsArray = [ {id: "wpm", value: results.netWPM}, {id: "accuracy", value: results.totalAccuracy}, {id: "gross", value: results.grossWPM}, {id: "time", value: results.formattedTime} ];
+  const resultsArray = [ {id: "wpm", value: results.netWPM}, 
+  {id: "accuracy", value: results.totalAccuracy}, 
+  {id: "gross", value: results.grossWPM}, 
+  {id: "time", value: results.formattedTime} ];
   resultsArray.forEach(item => { 
     document.getElementById(item.id).textContent = item.value;
   });
